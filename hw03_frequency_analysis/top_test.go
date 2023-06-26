@@ -43,12 +43,35 @@ var text = `Как видите, он  спускается  по  лестни�
 	посидеть у огня и послушать какую-нибудь интересную сказку.
 		В этот вечер...`
 
+var text2 = "a asd asd a qwe qwe qwe z x c"
+
+var text3 = "- - - - -"
+
 func TestTop10(t *testing.T) {
 	t.Run("no words in empty string", func(t *testing.T) {
 		require.Len(t, Top10(""), 0)
 	})
 
-	t.Run("positive test", func(t *testing.T) {
+	t.Run("positive test1", func(t *testing.T) {
+		expected := []string{
+			"qwe",
+			"a",
+			"asd",
+			"c",
+			"x",
+			"z",
+		}
+		require.Equal(t, expected, Top10(text2))
+	})
+
+	t.Run("positive test2", func(t *testing.T) {
+		expected := []string{
+			"-",
+		}
+		require.Equal(t, expected, Top10(text3))
+	})
+
+	t.Run("positive test3", func(t *testing.T) {
 		if taskWithAsteriskIsCompleted {
 			expected := []string{
 				"а",         // 8
